@@ -121,3 +121,24 @@
 		},
 	});
 })();
+
+// Pie
+(function() {
+	var ctx = document.querySelector('#pie').getContext('2d');
+	var data = getData('area');
+
+	var chart = new Chart(ctx, {
+		type: 'pie',
+		data: {
+			labels: ['Yes', 'No', 'Don\'t know'],
+			datasets: [
+				{
+					data: [1200, 800, 100],
+					backgroundColor: ['rgb(0,127,255)', 'rgb(255,127,0)', 'rgb(127,127,127)'],
+				},
+			],
+		},
+		options: {
+		},
+	});
+})();
