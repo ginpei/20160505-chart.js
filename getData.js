@@ -103,4 +103,15 @@ function getData(type) {
 			{ date:'2012-10-10', ie:35.29, ch:31.19, fx:22.3, sf:9.92, op:1.14 },
 		];
 	}
+	else if (type === 'line and area') {
+		return (function() {
+			var lineData = getData('line');
+			var data = getData('area').map(function(v, i) {
+				var obj = Object.assign({}, v);
+				obj.value = lineData[i].value;
+				return obj;
+			});
+			return data;
+		})();
+	}
 }

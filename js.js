@@ -57,3 +57,64 @@
 		}
 	});
 })();
+
+// Mixed
+(function() {
+	var ctx = document.querySelector('#mixed').getContext('2d');
+	var data = getData('line and area');
+
+	var chart = new Chart(ctx, {
+		type: 'bar',
+		data: {
+			labels: data.map(v=>v.date),
+			datasets: [
+				{
+					backgroundColor: 'transparent',
+					borderColor: 'rgb(255,0,0)',
+					data: data.map(v=>v.value),
+					label: 'Foo',
+					type: 'line',
+					yAxisID: 'y-axis-2',
+				},
+				{
+					data: data.map(v=>v.ie),
+					backgroundColor: 'rgb(0,127,255)',
+					borderColor: 'rgb(0,127,255)',
+					label: 'IE',
+					type: 'bar',
+					yAxisID: 'y-axis-1',
+				},
+				{
+					data: data.map(v=>v.ch),
+					backgroundColor: 'rgb(127,127,0)',
+					borderColor: 'rgb(127,127,0)',
+					label: 'Chrome',
+					type: 'bar',
+					yAxisID: 'y-axis-1',
+				},
+				{
+					data: data.map(v=>v.fx),
+					backgroundColor: 'rgb(255,127,0)',
+					borderColor: 'rgb(255,127,0)',
+					label: 'Firefox',
+					type: 'bar',
+					yAxisID: 'y-axis-1',
+				},
+			]
+		},
+		options: {
+			scales: {
+				yAxes: [
+				{
+					id: 'y-axis-1',
+					position: 'left',
+				},
+				{
+					id: 'y-axis-2',
+					position: 'right',
+				},
+				],
+			},
+		},
+	});
+})();
