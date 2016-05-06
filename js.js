@@ -9,8 +9,13 @@
 			labels: data.map(v=>`${v.date.getFullYear()}-${v.date.getMonth()+1}-${v.date.getDay()}`),
 			datasets: [
 				{
+					data: data.map(v=>(v.value+Math.random()*200-50)/2).reverse(),
+				},
+				{
 					data: data.map(v=>v.value),
-					fill: false,
+					// fill: false,
+					backgroundColor: '#09f',
+					borderColor: '#09f',
 					label: 'My Data',
 				},
 			]
