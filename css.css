@@ -1,0 +1,14 @@
+#pieLegend {
+	height: 400px;
+	margin: auto;
+	position: relative;
+	width: 400px;
+}
+#pieLegend canvas {
+	height: 100%;
+	width: 100%;
+}
+.pieLegend-legend {
+	pointer-events: none;
+	position: absolute;
+}

@@ -177,3 +177,60 @@
 		},
 	});
 })();
+
+// Put Legends on Pie Arcs
+(function() {
+	var ctx = document.querySelector('#pieLegend canvas').getContext('2d');
+	var data = getData('area');
+
+	var chart = new Chart(ctx, {
+		type: 'pie',
+		data: {
+			labels: ['Yes', 'No', 'Don\'t know'],
+			datasets: [
+				{
+					data: [1200, 800, 100],
+					backgroundColor: ['rgb(0,127,255)', 'rgb(255,127,0)', 'rgb(127,127,127)'],
+				},
+			],
+		},
+		options: {
+			legend: {
+				display: false,
+			},
+			maintainAspectRatio: false,
+		},
+	});
+
+	var views = chart.getDatasetMeta(0).data.map(v=>v._model);
+	var elParent = document.querySelector('#pieLegend');
+	views.forEach((view)=>{
+console.log(view);
+		// calculate position
+		var angle = (view.endAngle - view.startAngle) / 2 + view.startAngle;
+		var radius = view.outerRadius;
+		var x = view.x + radius/2 * Math.cos(angle);
+		var y = view.y + radius/2 * Math.sin(angle);
+
+		// add a legend
+		var el = document.createElement('span');
+		el.classList.add('pieLegend-legend');
+		Object.assign(el.style, {
+			color: view.backgroundColor,
+			left: `${x}px`,
+			textShadow: [
+				` 1px  1px 0 ${view.borderColor}`,
+				` 1px -1px 0 ${view.borderColor}`,
+				`-1px  1px 0 ${view.borderColor}`,
+				`-1px -1px 0 ${view.borderColor}`,
+			].join(','),
+			top: `${y}px`,
+		});
+		el.textContent = view.label;
+		elParent.appendChild(el);
+
+		// adjust position
+		el.style.left = `${x - el.clientWidth/2}px`;
+		el.style.top = `${y - el.clientHeight/2}px`;
+	});
+})();
