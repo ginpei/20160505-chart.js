@@ -14,7 +14,7 @@
 				{
 					data: data.map(v=>v.value),
 					// fill: false,
-					backgroundColor: '#09f',
+					backgroundColor: 'rgba(0,153,255,0.3)',
 					borderColor: '#09f',
 					label: 'My Data',
 				},
