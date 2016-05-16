@@ -6,7 +6,7 @@
 	var chart = new Chart(ctx, {
 		type: 'line',
 		data: {
-			labels: data.map(v=>`${v.date.getFullYear()}-${v.date.getMonth()+1}-${v.date.getDay()}`),
+			labels: data.map(v=>`${v.date.getFullYear()}-${v.date.getMonth()+1}-${v.date.getDate()}`),
 			datasets: [
 				{
 					data: data.map(v=>(v.value+Math.random()*200-50)/2).reverse(),
@@ -31,7 +31,7 @@
 	var chart = new Chart(ctx, {
 		type: 'line',
 		data: {
-			labels: data.map(v=>`${v.date.getFullYear()}-${v.date.getMonth()+1}-${v.date.getDay()}`),
+			labels: data.map(v=>`${v.date.getFullYear()}-${v.date.getMonth()+1}-${v.date.getDate()}`),
 			datasets: [
 				{
 					data: data.map(v=>(v.value+Math.random()*200-50)/2).reverse(),
