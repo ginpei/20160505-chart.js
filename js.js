@@ -205,7 +205,6 @@
 	var views = chart.getDatasetMeta(0).data.map(v=>v._model);
 	var elParent = document.querySelector('#pieLegend');
 	views.forEach((view)=>{
-console.log(view);
 		// calculate position
 		var angle = (view.endAngle - view.startAngle) / 2 + view.startAngle;
 		var radius = view.outerRadius;
