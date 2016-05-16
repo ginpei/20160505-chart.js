@@ -142,3 +142,38 @@
 		},
 	});
 })();
+
+// Separate numbers each 3 digits
+(function() {
+	var ctx = document.querySelector('#separatedNumber').getContext('2d');
+	var data = getData('line');
+
+	var chart = new Chart(ctx, {
+		type: 'line',
+		data: {
+			labels: data.map(v=>`${v.date.getFullYear()}-${v.date.getMonth()+1}-${v.date.getDate()}`),
+			datasets: [
+				{
+					data: data.map(v=>v.value*100),
+					backgroundColor: 'rgba(0,153,255,0.3)',
+					borderColor: '#09f',
+					label: 'My Data',
+				},
+			]
+		},
+		options: {
+			scales: {
+				yAxes: [
+					{
+						ticks: {
+							callback: (value, index, ticks)=>{
+								var label = Math.floor(value).toString().replace(/(\d)(?=(\d{3})+$)/g, '$1,');  // 12345->12,345
+								return label;
+							}
+						}
+					}
+				],
+			},
+		},
+	});
+})();
