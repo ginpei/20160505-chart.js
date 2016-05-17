@@ -11,4 +11,8 @@
 .pieLegend-legend {
 	pointer-events: none;
 	position: absolute;
+	transition: opacity 300ms;
+}
+#pieLegend:hover .pieLegend-legend {
+	opacity: 0;
 }
