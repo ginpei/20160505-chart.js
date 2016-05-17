@@ -233,3 +233,65 @@
 		el.style.top = `${y - el.clientHeight/2}px`;
 	});
 })();
+
+// Add Data
+(function() {
+	var elSection = document.querySelector('#addData');
+	var ctx = elSection.querySelector('canvas').getContext('2d');
+	var data = [
+		Math.floor(Math.random()*100),
+		Math.floor(Math.random()*100),
+		Math.floor(Math.random()*100),
+		Math.floor(Math.random()*100),
+		Math.floor(Math.random()*100),
+	];
+
+	var chart = new Chart(ctx, {
+		type: 'bar',
+		data: {
+			labels: data.map((v,i)=>`#${i}`),
+			datasets: [
+				{
+					data: data,
+					backgroundColor: 'rgba(0,153,255,0.3)',
+					borderColor: '#09f',
+					label: 'My Data',
+				},
+			]
+		},
+	});
+
+	elSection.querySelector('form').addEventListener('submit', (event)=>{
+		event.preventDefault();
+		var elForm = event.currentTarget;
+		var number = elSection.querySelector('input').value;
+
+		chart.data.labels.push(`#${chart.data.labels.length}`);
+		chart.data.datasets[0].data.push(number);
+		chart.update();
+
+		setRandomValue();
+	});
+
+	elSection.querySelector('.js-clear').addEventListener('click', (event)=>{
+		event.preventDefault();
+		var elForm = event.currentTarget;
+
+		chart.data.labels = [];
+		chart.data.datasets = [
+			{
+				data: [],
+				backgroundColor: 'rgba(0,153,255,0.3)',
+				borderColor: '#09f',
+				label: 'My Data',
+			},
+		];
+		chart.update();
+	});
+
+	function setRandomValue() {
+		elSection.querySelector('input').value = Math.floor(Math.random()*100);
+	}
+
+	setRandomValue();
+})();
