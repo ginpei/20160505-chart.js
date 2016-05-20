@@ -259,6 +259,17 @@
 				},
 			]
 		},
+		options: {
+			scales: {
+				yAxes: [
+					{
+						ticks: {
+							suggestedMin: 0,
+						},
+					},
+				],
+			},
+		},
 	});
 
 	elSection.querySelector('form').addEventListener('submit', (event)=>{
